@@ -1,0 +1,9 @@
+najpierw robie najprostszy, taki rdzeń gdzie będę podawał dane do listy
+
+- podaję godzinę, datę, tytuł, opis planu
+- sprawdzam czy mogę dodać w tym terminie
+- może jakiś event przypominający?
+
+potem
+- może w pliku będę zapisywał harmonogram? o ile mogę
+- interfejs graficzny
