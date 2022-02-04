@@ -4,11 +4,8 @@ class Plan {
 		this.description = description;
 		this.date = date;
 		this.time = time;
-	}
-	
+	}	
 }
-
-let plans = [];
 
 function retrieveInput() {
 	const name = document.getElementById("name").value;
@@ -17,15 +14,42 @@ function retrieveInput() {
 	const time = document.getElementById("time").value;
 
 	plans.push(new Plan(name, description, date, time));
-	console.log(plans);	
 }
 
 function store() {
-	const storage = window.localStorage;
-	storage.setItem("test", JSON.stringify(plans));
-	
-	let retrieved = storage.getItem("test");
-	console.log(JSON.parse(retrieved));
-
-	storage.clear();
+	retrieveInput();
+	window.localStorage.setItem("plans", JSON.stringify(plans));
 }
+
+function loadPlans() {
+	let retrieved = window.localStorage.getItem("plans");
+	
+	if (retrieved === null) {
+		return [];
+	} else {
+		return JSON.parse(retrieved);
+	}
+}
+
+function showPlans() {
+	
+	let text = "<ul>";
+
+	plans.forEach((plan) => {
+			text +=
+			"<li>" +
+			"<p>name: " + plan.name + "</p>" +
+			"<p>description: " + plan.description + "</p>" +
+			"<p>date: " + plan.date + "</p>" +
+			"<p>time: " + plan.time + "</p>" +
+			"</li>";
+	});
+
+	text += "</ul>";
+
+	document.getElementById("showPlans").innerHTML = text;
+}
+
+const plans = loadPlans();
+showPlans();
+
